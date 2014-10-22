@@ -131,7 +131,17 @@ namespace FiledRecipes.Domain
 
         public void Load()
         {
-            throw new NotImplementedException();
+            using (StreamReader reader = new StreamReader(_path))
+            {
+                string line;
+
+                while ((line = reader.ReadLine()) != null) ;
+                {
+
+                }
+            }
+
+            
         }
 
         public void Save()
