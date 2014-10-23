@@ -140,7 +140,7 @@ namespace FiledRecipes.Domain
 
                 while ((line = reader.ReadLine()) != null)
                 {
-                    // Check if new RecipeReadStatus should be see and setting it if so
+                    // Check if new RecipeReadStatus should be changed and setting it if so
                     switch (line)
                     {
                         case SectionRecipe:
@@ -159,7 +159,8 @@ namespace FiledRecipes.Domain
                     switch (readStatus)
                     {
                         case RecipeReadStatus.New:
-                            throw new NotImplementedException("New");
+                            Recipe newRecipe = new Recipe(line);
+                            continue;
                         case RecipeReadStatus.Ingredient:
                             throw new NotImplementedException("Ingredient");
                         case RecipeReadStatus.Instruction:
