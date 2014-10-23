@@ -131,6 +131,8 @@ namespace FiledRecipes.Domain
 
         public void Load()
         {
+            List<IRecipe> recipe = new List<IRecipe>();
+
             using (StreamReader reader = new StreamReader(_path))
             {
                 string line;
