@@ -132,7 +132,7 @@ namespace FiledRecipes.Domain
         public void Load()
         {
             List<IRecipe> recipe = new List<IRecipe>();
-            RecipeReadStatus readStatus;
+            RecipeReadStatus readStatus = new RecipeReadStatus();
 
             using (StreamReader reader = new StreamReader(_path))
             {
@@ -140,24 +140,32 @@ namespace FiledRecipes.Domain
 
                 while ((line = reader.ReadLine()) != null)
                 {
-
+                    // Check if new RecipeReadStatus should be see and setting it if so
                     switch (line)
                     {
-
                         case SectionRecipe:
                             readStatus = RecipeReadStatus.New;
-                            break;
+                            continue;
 
                         case SectionIngredients:
                             readStatus = RecipeReadStatus.Ingredient;
-                            break;
+                            continue;
 
                         case SectionInstructions:
                             readStatus = RecipeReadStatus.Instruction;
-                            break;
+                            continue;
+                    }
 
+                    switch (readStatus)
+                    {
+                        case RecipeReadStatus.New:
+                            throw new NotImplementedException("New");
+                        case RecipeReadStatus.Ingredient:
+                            throw new NotImplementedException("Ingredient");
+                        case RecipeReadStatus.Instruction:
+                            throw new NotImplementedException("Instruction");
                         default:
-                            throw new NotImplementedException("Kom till default");
+                            throw new NotImplementedException("Default");
                     }
                 }
             }
