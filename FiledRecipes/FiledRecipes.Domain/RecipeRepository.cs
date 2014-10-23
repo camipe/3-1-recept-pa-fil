@@ -132,26 +132,32 @@ namespace FiledRecipes.Domain
         public void Load()
         {
             List<IRecipe> recipe = new List<IRecipe>();
+            RecipeReadStatus readStatus;
 
             using (StreamReader reader = new StreamReader(_path))
             {
                 string line;
 
-                while ((line = reader.ReadLine()) != null) ;
+                while ((line = reader.ReadLine()) != null)
                 {
+
                     switch (line)
                     {
+
                         case SectionRecipe:
-                            throw new NotImplementedException();
+                            readStatus = RecipeReadStatus.New;
+                            break;
 
                         case SectionIngredients:
-                            throw new NotImplementedException();
+                            readStatus = RecipeReadStatus.Ingredient;
+                            break;
 
                         case SectionInstructions:
-                            throw new NotImplementedException();
+                            readStatus = RecipeReadStatus.Instruction;
+                            break;
 
                         default:
-                            break;
+                            throw new NotImplementedException("Kom till default");
                     }
                 }
             }
