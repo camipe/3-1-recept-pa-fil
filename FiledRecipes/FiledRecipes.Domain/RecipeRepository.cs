@@ -131,8 +131,11 @@ namespace FiledRecipes.Domain
 
         public void Load()
         {
+            // Declaring variables
             List<IRecipe> recipe = new List<IRecipe>();
             RecipeReadStatus readStatus = new RecipeReadStatus();
+            Recipe newRecipe;
+
 
             using (StreamReader reader = new StreamReader(_path))
             {
@@ -158,11 +161,29 @@ namespace FiledRecipes.Domain
 
                     switch (readStatus)
                     {
-                        case RecipeReadStatus.New:
-                            Recipe newRecipe = new Recipe(line);
-                            continue;
+                            // If RecipeReadstatus new, initiate new recipe
+                        case RecipeReadStatus.New:                            
+                            newRecipe = new Recipe(line);
+                            break;
+
                         case RecipeReadStatus.Ingredient:
-                            throw new NotImplementedException("Ingredient");
+                            // If RecipeReadStatus Ingredient, split line on ; and initiate new Ingredient, set values and add to newRecipe
+                            string[] ingredientValues = line.Split(';');
+                            
+                            if (ingredientValues.Length != 3)
+                            {
+                                throw new FileFormatException("Only 3 values are accepted.");
+                            }
+
+                            Ingredient ingredients = new Ingredient();
+                            ingredients.Amount = ingredientValues[0];
+                            ingredients.Measure = ingredientValues[1];
+                            ingredients.Name = ingredientValues[2];
+
+                            newRecipe.Add(ingredients);
+
+                            break;
+                                
                         case RecipeReadStatus.Instruction:
                             throw new NotImplementedException("Instruction");
                         default:
