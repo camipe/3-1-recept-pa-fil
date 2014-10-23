@@ -137,10 +137,23 @@ namespace FiledRecipes.Domain
 
                 while ((line = reader.ReadLine()) != null) ;
                 {
+                    switch (line)
+                    {
+                        case SectionRecipe:
+                            throw new NotImplementedException();
 
+                        case SectionIngredients:
+                            throw new NotImplementedException();
+
+                        case SectionInstructions:
+                            throw new NotImplementedException();
+
+                        default:
+                            break;
+                    }
                 }
             }
-
+            
             
         }
 
