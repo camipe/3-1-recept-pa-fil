@@ -134,7 +134,7 @@ namespace FiledRecipes.Domain
             // Declaring variables
             List<IRecipe> recipes = new List<IRecipe>();
             RecipeReadStatus readStatus = new RecipeReadStatus();
-            Recipe newRecipe;
+            Recipe newRecipe = null;
 
 
             using (StreamReader reader = new StreamReader(_path))
@@ -164,7 +164,7 @@ namespace FiledRecipes.Domain
                             // If RecipeReadstatus new, initiate new recipe
                         case RecipeReadStatus.New:                            
                             newRecipe = new Recipe(line);
-                            recipes.
+                            recipes.Add(newRecipe);
                             break;
 
                         case RecipeReadStatus.Ingredient:
@@ -182,13 +182,13 @@ namespace FiledRecipes.Domain
                             ingredients.Name = ingredientValues[2];
 
                             newRecipe.Add(ingredients);
-
                             break;
                                 
                         case RecipeReadStatus.Instruction:
-                            throw new NotImplementedException("Instruction");
+                            newRecipe.Add(line);
+                            break;
                         default:
-                            throw new NotImplementedException("Default");
+                            throw new FileFormatException();
                     }
                 }
             }
