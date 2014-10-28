@@ -157,6 +157,9 @@ namespace FiledRecipes.Domain
                         case SectionInstructions:
                             readStatus = RecipeReadStatus.Instruction;
                             continue;
+
+                        case "":
+                            continue;
                     }
 
                     switch (readStatus)
@@ -190,16 +193,16 @@ namespace FiledRecipes.Domain
                         default:
                             throw new FileFormatException();
                     }
-                    // Sort list on name
-                    recipes.OrderBy(r => r.Name);
-                    // Add sorted list as a reference to _recipes
-                    _recipes = recipes;
-
-                    IsModified = false;
-                    OnRecipesChanged(EventArgs.Empty);
+                    
                 }
             }
-            
+            // Sort list on name
+            recipes.OrderBy(r => r.Name);
+            // Add sorted list as a reference to _recipes
+            _recipes = recipes;
+
+            IsModified = false;
+            OnRecipesChanged(EventArgs.Empty);
             
         }
 
