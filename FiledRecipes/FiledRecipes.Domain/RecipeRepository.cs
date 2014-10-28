@@ -197,9 +197,9 @@ namespace FiledRecipes.Domain
                 }
             }
             // Sort list on name
-            recipes.OrderBy(r => r.Name);
+            IEnumerable<IRecipe> sortedRecipes = recipes.OrderBy(r => r.Name);
             // Add sorted list as a reference to _recipes
-            _recipes = recipes;
+            _recipes = sortedRecipes.ToList();
 
             IsModified = false;
             OnRecipesChanged(EventArgs.Empty);
