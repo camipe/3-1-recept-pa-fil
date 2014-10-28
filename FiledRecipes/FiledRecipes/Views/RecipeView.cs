@@ -14,7 +14,28 @@ namespace FiledRecipes.Views
     {
         public void Show(IRecipe recipe)
         {
-            throw new NotImplementedException();
+            Header = recipe.Name;
+            ShowHeaderPanel();
+
+            Console.WriteLine();
+            Console.WriteLine("Ingredienser");
+            Console.WriteLine("============");
+
+            foreach (IIngredient item in recipe.Ingredients)
+            {
+                Console.WriteLine(item);
+            }
+
+            Console.WriteLine();
+            Console.WriteLine("Gör så här:");
+            Console.WriteLine("===========");
+            
+            foreach (string item in recipe.Instructions)
+            {
+                Console.WriteLine("{0}", );
+                Console.WriteLine(item);
+            }
+            
         }
 
         public void Show(IEnumerable<IRecipe> recipes)
