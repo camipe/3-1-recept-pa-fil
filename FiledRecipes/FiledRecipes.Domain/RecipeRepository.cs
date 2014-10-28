@@ -132,7 +132,7 @@ namespace FiledRecipes.Domain
         public void Load()
         {
             // Declaring variables
-            List<IRecipe> recipe = new List<IRecipe>();
+            List<IRecipe> recipes = new List<IRecipe>();
             RecipeReadStatus readStatus = new RecipeReadStatus();
             Recipe newRecipe;
 
@@ -164,6 +164,7 @@ namespace FiledRecipes.Domain
                             // If RecipeReadstatus new, initiate new recipe
                         case RecipeReadStatus.New:                            
                             newRecipe = new Recipe(line);
+                            recipes.
                             break;
 
                         case RecipeReadStatus.Ingredient:
