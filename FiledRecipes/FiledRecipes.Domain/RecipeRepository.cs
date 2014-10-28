@@ -190,6 +190,13 @@ namespace FiledRecipes.Domain
                         default:
                             throw new FileFormatException();
                     }
+                    // Sort list on name
+                    recipes.OrderBy(r => r.Name);
+                    // Add sorted list as a reference to _recipes
+                    _recipes = recipes;
+
+                    IsModified = false;
+                    OnRecipesChanged(EventArgs.Empty);
                 }
             }
             
