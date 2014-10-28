@@ -29,11 +29,13 @@ namespace FiledRecipes.Views
             Console.WriteLine();
             Console.WriteLine("Gör så här:");
             Console.WriteLine("===========");
-            
+
+            int itemNumber = 1;
             foreach (string item in recipe.Instructions)
             {
-                Console.WriteLine("{0}", );
+                Console.WriteLine("<{0}>", itemNumber);
                 Console.WriteLine(item);
+                itemNumber = itemNumber + 1;
             }
             
         }
