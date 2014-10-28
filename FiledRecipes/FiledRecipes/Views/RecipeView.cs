@@ -42,7 +42,11 @@ namespace FiledRecipes.Views
 
         public void Show(IEnumerable<IRecipe> recipes)
         {
-            throw new NotImplementedException();
+            foreach (IRecipe item in recipes)
+            {
+                Show(item);
+                ContinueOnKeyPressed();
+            }
         }
     }
 }
