@@ -164,7 +164,7 @@ namespace FiledRecipes.Domain
 
                     switch (readStatus)
                     {
-                            // If RecipeReadstatus new, initiate new recipe
+                            // If RecipeReadstatus new, initiate new recipe and add to recipes list
                         case RecipeReadStatus.New:                            
                             newRecipe = new Recipe(line);
                             recipes.Add(newRecipe);
@@ -188,6 +188,7 @@ namespace FiledRecipes.Domain
                             break;
                                 
                         case RecipeReadStatus.Instruction:
+                            // Add instructions to recipe-object
                             newRecipe.Add(line);
                             break;
                         default:
