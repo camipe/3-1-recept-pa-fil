@@ -14,9 +14,11 @@ namespace FiledRecipes.Views
     {
         public void Show(IRecipe recipe)
         {
+            // Show header
             Header = recipe.Name;
             ShowHeaderPanel();
 
+            // Show ingredients
             Console.WriteLine();
             Console.WriteLine("Ingredienser");
             Console.WriteLine("============");
@@ -26,6 +28,7 @@ namespace FiledRecipes.Views
                 Console.WriteLine(item);
             }
 
+            // Show instructions
             Console.WriteLine();
             Console.WriteLine("Gör så här:");
             Console.WriteLine("===========");
@@ -42,6 +45,7 @@ namespace FiledRecipes.Views
 
         public void Show(IEnumerable<IRecipe> recipes)
         {
+            // Loop through all reciepes and show them one at the time
             foreach (IRecipe item in recipes)
             {
                 Show(item);
