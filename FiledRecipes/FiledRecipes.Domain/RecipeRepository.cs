@@ -230,6 +230,9 @@ namespace FiledRecipes.Domain
 
                 }
             }
+            IsModified = false;
+            OnRecipesChanged(EventArgs.Empty);
+            
         }
     }
 }
