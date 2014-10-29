@@ -222,9 +222,10 @@ namespace FiledRecipes.Domain
                         writer.WriteLine(item);
                     }
 
-                    foreach (var item in collection)
+                    writer.WriteLine(SectionInstructions);
+                    foreach (string item in recipe.Instructions)
                     {
-                        
+                        writer.WriteLine(item);
                     }
 
                 }
