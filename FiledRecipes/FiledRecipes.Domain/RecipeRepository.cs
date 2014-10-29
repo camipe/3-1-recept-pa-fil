@@ -213,15 +213,17 @@ namespace FiledRecipes.Domain
             {
                 foreach (IRecipe recipe in _recipes)
                 {
+                    // Write recipe name
                     writer.WriteLine(SectionRecipe);
                     writer.WriteLine(recipe.Name);
 
+                    // Write out all ingredients
                     writer.WriteLine(SectionIngredients);
                     foreach (IIngredient item in recipe.Ingredients)
                     {
-                        writer.WriteLine(item);
+                        writer.WriteLine("{0};{1};{2}", item.Amount, item.Measure, item.Name);
                     }
-
+                    // Write out all instructions
                     writer.WriteLine(SectionInstructions);
                     foreach (string item in recipe.Instructions)
                     {
@@ -230,9 +232,9 @@ namespace FiledRecipes.Domain
 
                 }
             }
+
             IsModified = false;
-            OnRecipesChanged(EventArgs.Empty);
-            
+            OnRecipesChanged(EventArgs.Empty);            
         }
     }
 }
