@@ -211,9 +211,23 @@ namespace FiledRecipes.Domain
         {
             using (StreamWriter writer = new StreamWriter(_path))
             {
-                writer.Write("Word ");
-                writer.WriteLine("word 2");
-                writer.WriteLine("Line");
+                foreach (IRecipe recipe in _recipes)
+                {
+                    writer.WriteLine(SectionRecipe);
+                    writer.WriteLine(recipe.Name);
+
+                    writer.WriteLine(SectionIngredients);
+                    foreach (IIngredient item in recipe.Ingredients)
+                    {
+                        writer.WriteLine(item);
+                    }
+
+                    foreach (var item in collection)
+                    {
+                        
+                    }
+
+                }
             }
         }
     }
