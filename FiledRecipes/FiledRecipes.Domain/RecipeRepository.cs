@@ -209,7 +209,12 @@ namespace FiledRecipes.Domain
 
         public void Save()
         {
-            throw new NotImplementedException();
+            using (StreamWriter writer = new StreamWriter(_path))
+            {
+                writer.Write("Word ");
+                writer.WriteLine("word 2");
+                writer.WriteLine("Line");
+            }
         }
     }
 }
